@@ -1,8 +1,11 @@
 const express = require('express');
 const app = express();
 const dbconnect = require('./config/connection');
-const routes = require('./routes/homeRoutes');
+const routes = require('./routes/api');
 const path = require('path');
+
+app.use(express.static('public'))
+app.use('/api',routes);
 
 dbconnect();
 
@@ -18,7 +21,6 @@ app.get('/stats', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/stats.html'))
 })
 
-app.use(routes);
 
 
 // Needs to be at the bottom
