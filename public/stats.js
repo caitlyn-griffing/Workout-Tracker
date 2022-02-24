@@ -14,7 +14,7 @@ function calculateTotalWeight(data) {
 
   return totals;
 }
-
+// Populate Chart : duration and weight
 function populateChart(data) {
   const durations = data.map(({ totalDuration }) => totalDuration);
   const pounds = calculateTotalWeight(data);
@@ -26,6 +26,8 @@ function populateChart(data) {
     const date = new Date(day);
 
     // Use JavaScript's `Intl` object to help format dates
+    // duration (time/minutes) and weight (pounds)
+    // Last 7 days
     return new Intl.DateTimeFormat('en-US', {
       weekday: 'short',
       month: 'short',
@@ -33,6 +35,7 @@ function populateChart(data) {
     }).format(date);
   });
 
+  // time duration of workout
   let lineChart = new Chart(line, {
     type: 'line',
     data: {
@@ -61,6 +64,7 @@ function populateChart(data) {
     },
   });
 
+  // weight lifted in pounds
   let barChart = new Chart(bar, {
     type: 'bar',
     data: {

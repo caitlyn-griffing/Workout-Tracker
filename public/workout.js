@@ -1,8 +1,12 @@
+// Initialize Workout
 async function initWorkout() {
+  // Last Workout
   const lastWorkout = await API.getLastWorkout();
   console.log("Last workout:", lastWorkout);
+  // if last workout is true
   if (lastWorkout) {
     document
+      // set the attribute to the last workout id
       .querySelector("a[href='/exercise?']")
       .setAttribute("href", `/exercise?id=${lastWorkout._id}`);
 
@@ -13,12 +17,14 @@ async function initWorkout() {
       ...tallyExercises(lastWorkout.exercises)
     };
 
+    // render Workout Summary or show no workout text
     renderWorkoutSummary(workoutSummary);
   } else {
     renderNoWorkoutText()
   }
 }
 
+// Tallying resistance and cardio exercise details (resistance : total weight, total sets, total reps | cardio : total distance)
 function tallyExercises(exercises) {
   const tallied = exercises.reduce((acc, curr) => {
     if (curr.type === "resistance") {
@@ -44,6 +50,8 @@ function formatDate(date) {
   return new Date(date).toLocaleDateString(options);
 }
 
+// Workout Key (date, total workout duration, exercises performed, total weight lifted, total set performed, total reps performed, total distance covered)
+// in Workout Summary above
 function renderWorkoutSummary(summary) {
   const container = document.querySelector(".workout-stats");
 

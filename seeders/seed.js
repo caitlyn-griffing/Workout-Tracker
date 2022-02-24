@@ -1,11 +1,15 @@
 const mongoose = require('mongoose');
-const db = require('../models');
+// const db = require('../models');
+const db = require('../config/connection');
 
-mongoose.connect('mongodb://localhost/workout', {
-  useNewUrlParser: true,
-  useFindAndModify: false,
-  useUnifiedTopology: true,
-});
+// mongoose.connect('mongodb://localhost/workout', {
+//   useNewUrlParser: true,
+//   useFindAndModify: false,
+//   useUnifiedTopology: true,
+// });
+db();
+
+db.Workout.insertMany({});
 
 const workoutSeed = [
   {
