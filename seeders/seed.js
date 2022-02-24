@@ -1,15 +1,17 @@
 const mongoose = require('mongoose');
-// const db = require('../models');
-const db = require('../config/connection');
+const db = require('../models/Workout');
+// const db = require('../config/connection');
+// console.log(db);
+const uri = 'mongodb+srv://root:asdf@cluster0.mowog.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+mongoose.connect(uri, {
+  useNewUrlParser: true,
+  useFindAndModify: false,
+  useUnifiedTopology: true,
+});
+// const db = dbConnector();
+// db.once();
 
-// mongoose.connect('mongodb://localhost/workout', {
-//   useNewUrlParser: true,
-//   useFindAndModify: false,
-//   useUnifiedTopology: true,
-// });
-db();
-
-db.Workout.insertMany({});
+// db.Workout.insertMany({});
 
 const workoutSeed = [
   {
@@ -128,9 +130,9 @@ const workoutSeed = [
     ],
   },
 ];
-
-db.Workout.deleteMany({})
-  .then(() => db.Workout.collection.insertMany(workoutSeed))
+// console.log(dbConnector())
+db.deleteMany({})
+  .then(() => db.collection.insertMany(workoutSeed))
   .then((data) => {
     console.log(data.result.n + ' records inserted!');
     process.exit(0);
