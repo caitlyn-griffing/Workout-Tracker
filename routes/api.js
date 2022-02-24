@@ -7,7 +7,7 @@ router.get('/workouts', async (req, res) => {
     })
 })
 
-router.post('/workouts/:id', async (req, res) => {
+router.post('/workouts', async (req, res) => {
     const newWorkout = await Workout.create(
         { }
     )
@@ -15,7 +15,7 @@ router.post('/workouts/:id', async (req, res) => {
     res.json(newWorkout)
 
 })
-router.put('/api/workouts/:id', async (req, res) => {
+router.put('/workouts/:id', async (req, res) => {
     //    console.log(req.body)
     const newExcercise = await Workout.findByIdAndUpdate(req.params.id, {
         exercises: req.body
