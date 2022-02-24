@@ -7,8 +7,6 @@ const path = require('path');
 app.use(express.static('public'))
 app.use('/api',routes);
 
-dbconnect();
-
 const PORT = process.env.PORT || 3001
 
 app.get('/', (req, res) => {
